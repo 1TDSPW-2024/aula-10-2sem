@@ -1,0 +1,26 @@
+$app-bg-collor-light: #f5f5f5;
+$app-text-collor-light: black;
+
+$app-bg-collor-dark: black;
+$app-text-collor-dark: white;
+
+body {
+  background-color: #c1c1c1;
+  color: red;
+}
+.app {
+  &.light {
+    background-color: $app-bg-collor-light;
+    color: $app-text-collor-light;
+  }
+  &.dark {
+    background-color: $app-bg-collor-dark;
+    color: $app-text-collor-dark;
+  }
+}
+
+.app-header {
+  padding: 20px;
+  text-align: center;
+  background-color: lighten($app-bg-collor-dark, 10%);
+}
