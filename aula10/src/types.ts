@@ -1,8 +1,14 @@
 export type TipoProduto = {
-    id: number;
-    nome: string;
-    marca: string;
-    desc: string;
-    preco: number;
-    foto: string;
-}
+  id: number;
+  nome: string;
+  marca: string;
+  desc: string;
+  preco: number;
+  foto: string;
+};
+
+export type TipoUsuario = {
+  id: number;
+  nome: string;
+  avatar_url: string;
+};

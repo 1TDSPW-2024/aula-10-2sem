@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { TipoUsuario } from "../../types";
 
-export default function Usuarios() {
+export default function Usuario() {
   //MUDANDO O TÍTULO DA PÁGINA!!!
   document.title = "Usuarios";
-  // const [usuario, setUsuario] = useState({
-  //   login: "",
-  //   avatar_url:""
-  // });
 
-  const [usuarios, setUsuarios] = useState([{ id: "", login: "", avatar_url: "" }]);
+  const [usuario, setUsuario] = useState<TipoUsuario & { login: string }>({
+    id: 0,
+    nome: "",
+    avatar_url: "",
+    login: "",
+  });
 
   useEffect(() => {
     //Criando uma requisição asincrona para a api do githuh com async e await com função anonima.
@@ -20,7 +21,7 @@ export default function Usuarios() {
           throw new Error("Ocorreu um erro ao receber os dados");
         }
         const dados = await response.json();
-        setUsuarios(dados);
+        setUsuario(dados);
       } catch (err) {
         console.log(err);
       }
@@ -31,16 +32,12 @@ export default function Usuarios() {
 
   return (
     <div>
-      <h1>Bem Vindo!</h1>
-      <ul>
-        {usuarios.map((u) => (
-          <li key={u.id}>
-            <Link to={`/users/${u.login}`}>
-              {u.login} - <img style={{ width: "2%" }} src={u.avatar_url} alt={u.login} />
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <h1>Bem Vindo!</h1> (
+      <div>
+        <h2>{usuario.login}</h2>
+        <img src={usuario.avatar_url} alt={usuario.login} />
+      </div>
+      )
     </div>
   );
 }
