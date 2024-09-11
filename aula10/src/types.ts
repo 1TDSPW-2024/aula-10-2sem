@@ -6,3 +6,9 @@ export type TipoProduto = {
     preco: number;
     foto: string;
 }
+
+export type TipoUsuario ={
+    id: number;
+    login:string;
+    avatar_url:string;
+}

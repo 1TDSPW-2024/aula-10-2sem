@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { TipoUsuario } from "../../types";
+import { Link } from "react-router-dom";
 
 export default function Usuarios() {
   //MUDANDO O TÍTULO DA PÁGINA!!!
@@ -8,8 +10,8 @@ export default function Usuarios() {
   //   avatar_url:""
   // });
 
-  const [usuarios, setUsuarios] = useState([
-    {
+  const [usuarios, setUsuarios] = useState<TipoUsuario[]>([
+    {id:0,
       login: "",
       avatar_url: "",
     },
@@ -31,19 +33,17 @@ export default function Usuarios() {
     }
 
     carregarUsuarios();
+    }, []);
 
-  }, []);
 
   return (
     <div>
       <h1>Bem Vindo!</h1>
-
-      {usuarios.map((usuario) => (
-        <div key={usuario.login}>
-          <h2>{usuario.login}</h2>
-          <img src={usuario.avatar_url} alt={usuario.login} />
-        </div>
+      <ul>
+      {usuarios.map((u) => (
+        <li key={u.id}><Link to={`/user/${u.login}`}>{u.login} - <img style={{width:"2%"}} src={u.avatar_url} alt={u.login}/></Link></li>
       ))}
+      </ul>
     </div>
   );
 }
